@@ -62,3 +62,6 @@ jobs:
           keyvault: "kv-de-encrypted-disk"
           secrets: 'test-secret'
         id: retrieveConnectionSecrets
+
+      - name: Get Connection
+        run: echo 0 
