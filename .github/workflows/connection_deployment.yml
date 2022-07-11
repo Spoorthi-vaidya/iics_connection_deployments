@@ -64,4 +64,4 @@ jobs:
         id: retrieveConnectionSecrets
 
       - name: Get Connection
-        run: echo 0 
+        run: echo ${{ steps.myGetSecretAction.outputs.test-secret }}
