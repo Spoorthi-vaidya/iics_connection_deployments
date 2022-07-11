@@ -57,8 +57,7 @@ jobs:
       - name: Login to development
         run: |
             python ./scripts/infa_login.py
-
-      - name: Login to Azure
+            
       - uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}

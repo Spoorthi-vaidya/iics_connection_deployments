@@ -8,24 +8,3 @@ Allowed statuses: Added, Changed, Fixed, Removed
 
 ## [Unreleased]
 
-
-
-## [0.1.0]
-
-### Added
-Dev and UAT Stages
-Login script
-Testing pipelines
-Cherry pick commit job
-
-## [0.2.0]
-
-### Added
-Created Jenkins pipeline for deployment
-Rollback pipeline for jenkins
-Rollback python script
-
-### Changed
-Refactored code to utilize functions
-Moved login to functions
-Added logout to scripts
