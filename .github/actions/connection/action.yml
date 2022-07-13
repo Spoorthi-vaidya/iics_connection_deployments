@@ -25,10 +25,14 @@ runs:
       - uses: Azure/login@v1
         with:
           creds: ${{ inputs.az_creds }}
+      
+      - name: Get secrets
+        shell: sh
+        run: az keyvault secret list --vault-name psdekeyvault | jq -r '.[] | select( .name | contains("PS"))'
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 
-          keyvault: "kv-de-encrypted-disk"
+          keyvault: "psdekeyvault"
           secrets: ${{ inputs.secret_list }}
         id: retrieveConnectionSecrets
 
