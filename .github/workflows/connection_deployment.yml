@@ -48,5 +48,5 @@ jobs:
       - uses: ./.github/actions/connection
         with:
           connection_name: ${{ matrix.connection }}
-          secret_list: "test-secret"
+          secret_list: "test*"
           az_creds: ${{ secrets.AZURE_CREDENTIALS }}
