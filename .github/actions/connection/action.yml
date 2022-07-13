@@ -22,4 +22,4 @@ runs:
 
       - name: "Get Connection"
         shell: sh
-        run: ${{ github.action_path }}/scripts/promote_connection.py ${{ inputs.connection_name }} ${{ inputs.secret_list }}
+        run: ./scripts/promote_connection.py ${{ inputs.connection_name }} ${{ inputs.secret_list }}
