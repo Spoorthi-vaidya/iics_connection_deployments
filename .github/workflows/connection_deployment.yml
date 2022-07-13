@@ -56,16 +56,17 @@ jobs:
       - uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          
+
   deploy_connections:
     name: Deploy Connections
+    needs: setup_env
     runs-on: ubuntu-latest
     strategy:
       matrix:
         connection: ["my connection"]
 
     steps:
-      - uses: ./.github/actions/connection
+      - uses: ${GITHUB_PATH}/.github/actions/connection
         with:
           connection_name: ${{ matrix.connection }}
           secret_list: "test-secret"
