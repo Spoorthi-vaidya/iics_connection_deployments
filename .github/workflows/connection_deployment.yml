@@ -37,35 +37,16 @@ jobs:
       name: development
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      matrix:
+        connection: ["my_connection", "your_connection"]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Install python and dependent modules
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      
-      - name: Install python modules
-        run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-
-      - uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-  deploy_connections:
-    name: Deploy Connections
-    needs: setup_env
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        connection: ["my connection"]
-
-    steps:
       - uses: ${GITHUB_PATH}/.github/actions/connection
         with:
           connection_name: ${{ matrix.connection }}

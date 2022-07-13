@@ -14,6 +14,15 @@ inputs:
 runs:
   using: "composite"
   steps:
+        # Install python and dependent modules
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      
+      - uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - uses: Azure/get-keyvault-secrets@v1
         with: 
           keyvault: "kv-de-encrypted-disk"
