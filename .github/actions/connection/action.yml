@@ -21,7 +21,7 @@ runs:
       
       - uses: Azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ AZURE_CREDENTIALS }}
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 

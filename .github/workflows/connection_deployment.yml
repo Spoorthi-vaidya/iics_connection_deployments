@@ -25,6 +25,7 @@ env:
   UAT_IICS_USERNAME: ${{ secrets.UAT_IICS_USERNAME }}
   UAT_IICS_PASSWORD: ${{ secrets.UAT_IICS_PASSWORD }}
 
+  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   # This is overriding until we connect the repository with a workflow_dispatch
 
   CONNECTION_NAME: ${{ github.event.inputs.connection_name }}
