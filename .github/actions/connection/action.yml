@@ -11,6 +11,9 @@ inputs:
   secret_list: 
     description: 'List of KV secrets to be replaced'
     required: false
+  az_creds:
+    description: 'azure creds'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -21,7 +24,7 @@ runs:
       
       - uses: Azure/login@v1
         with:
-          creds: ${{ AZURE_CREDENTIALS }}
+          creds: ${{ inputs.az_creds }}
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 

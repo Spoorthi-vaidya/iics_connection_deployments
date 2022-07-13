@@ -52,3 +52,4 @@ jobs:
         with:
           connection_name: ${{ matrix.connection }}
           secret_list: "test-secret"
+          az_creds: ${{ AZURE_CREDENTIALS }}
