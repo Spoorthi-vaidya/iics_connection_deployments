@@ -47,7 +47,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - uses: ${GITHUB_PATH}/.github/actions/connection
+      - uses: .github/actions/connection
         with:
           connection_name: ${{ matrix.connection }}
           secret_list: "test-secret"
