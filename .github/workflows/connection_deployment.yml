@@ -25,9 +25,6 @@ env:
   UAT_IICS_USERNAME: ${{ secrets.UAT_IICS_USERNAME }}
   UAT_IICS_PASSWORD: ${{ secrets.UAT_IICS_PASSWORD }}
 
-  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-  # This is overriding until we connect the repository with a workflow_dispatch
-
   CONNECTION_NAME: ${{ github.event.inputs.connection_name }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -52,4 +49,4 @@ jobs:
         with:
           connection_name: ${{ matrix.connection }}
           secret_list: "test-secret"
-          az_creds: ${{ AZURE_CREDENTIALS }}
+          az_creds: ${{ secrets.AZURE_CREDENTIALS }}
