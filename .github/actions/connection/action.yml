@@ -1,0 +1,25 @@
+
+
+
+
+name: 'Informatica Connection'
+description: 'Composite of informatica connection'
+inputs:
+  connection_name:  # id of input
+    description: 'Name of the connection to update'
+    required: true
+  secret_list: 
+    description: 'List of KV secrets to be replaced'
+    required: false
+runs:
+  using: "composite"
+  steps:
+      - uses: Azure/get-keyvault-secrets@v1
+        with: 
+          keyvault: "kv-de-encrypted-disk"
+          secrets: ${{ inputs.secret_list }}
+        id: retrieveConnectionSecrets
+
+      - name: "Get Connection"
+        shell: sh
+        run: ${{ github.action_path }}/scripts/promote_connection.py ${{ inputs.connection_name }} ${{ inputs.secret_list }}

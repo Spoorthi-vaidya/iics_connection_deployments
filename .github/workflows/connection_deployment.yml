@@ -56,12 +56,8 @@ jobs:
       - uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - uses: Azure/get-keyvault-secrets@v1
-        with: 
-          keyvault: "kv-de-encrypted-disk"
-          secrets: 'test-secret'
-        id: retrieveConnectionSecrets
-
-      - name: Get Connection
-        run: echo ${{ steps.myGetSecretAction.outputs.test-secret }}
+      
+      - uses: ./.github/actions/connection
+        with:
+          connection_name: "test_connection"
+          secret_list: "test-secret"
