@@ -28,7 +28,7 @@ runs:
       
       - name: Get secrets
         shell: sh
-        run: echo "SECRET_LIST=${az keyvault secret list --vault-name psdekeyvault | jq -r '.[] | select( .name | contains(\"PS\"))'}" >> $GITHUB_ENV
+        run: echo "SECRET_LIST=$(az keyvault secret list --vault-name psdekeyvault | jq -r '.[] | select( .name | contains(\"PS\"))')" >> $GITHUB_ENV
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 
