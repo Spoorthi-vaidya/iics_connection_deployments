@@ -29,16 +29,17 @@ runs:
       - name: Get secrets
         shell: bash
         run: |
-          echo "SECRET_LIST=$(az keyvault secret list --vault-name ${{ env.key_vault }} | \
+          echo "SECRET_LIST=$(az keyvault secret list --vault-name ${{ inputs.key_vault }} | \
           jq -r '.[] | select( .name | contains("PS")) | .name ' | \
           paste -s -d, -)" >> $GITHUB_ENV
 
       - uses: Azure/get-keyvault-secrets@v1
+        if: ${{ env.SECRET_LIST }} != ""
         with: 
-          keyvault: ${{ env.key_vault }}
+          keyvault: ${{ inputs.key_vault }}
           secrets: ${{ env.SECRET_LIST }}
         id: retrieveConnectionSecrets
 
       - name: "Get Connection"
         shell: bash
-        run: python3 ./scripts/promote_connection.py ${{ inputs.connection_name }} ${{ inputs.secret_list }}
+        run: python3 ./scripts/promote_connection.py
