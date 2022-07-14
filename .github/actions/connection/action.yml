@@ -39,7 +39,7 @@ runs:
         shell: bash
         run: |
           echo "SECRET_LIST=$(az keyvault secret list --vault-name ${{ inputs.key_vault }} | \
-          jq -r '.[] | select( .name | contains(" ${{ inputs.connection_name }} ")) | .name ' | \
+          jq -r '.[] | select( .name | contains("${{ inputs.connection_name }}")) | .name ' | \
           paste -s -d, -)" >> $GITHUB_ENV
 
       - uses: Azure/get-keyvault-secrets@v1
