@@ -119,4 +119,9 @@ def iics_rollback_mapping(url, session_id, project_name, mapping_name):
     SUCCESS = iics_pull_by_commit_object(url, session_id, PREVIOUS_COMMIT_HASH, OBJECT_ID)
 
     return SUCCESS
-    
+
+def check_ws_return(ws_message):
+
+    if ws_message.status_code != 200:
+        print("Exception caught: " + ws_message.text)
+        sys.exit(99)

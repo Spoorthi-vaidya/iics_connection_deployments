@@ -8,11 +8,11 @@ inputs:
   connection_name:  # id of input
     description: 'Name of the connection to update'
     required: true
-  secret_list: 
-    description: 'List of KV secrets to be replaced'
-    required: false
   az_creds:
     description: 'azure creds'
+    required: true
+  key_vault:
+    description: 'Keyvault to use for target secrets'
     required: true
 runs:
   using: "composite"
@@ -29,13 +29,13 @@ runs:
       - name: Get secrets
         shell: bash
         run: |
-          echo "SECRET_LIST=$(az keyvault secret list --vault-name psdekeyvault | \
+          echo "SECRET_LIST=$(az keyvault secret list --vault-name ${{ env.key_vault }} | \
           jq -r '.[] | select( .name | contains("PS")) | .name ' | \
           paste -s -d, -)" >> $GITHUB_ENV
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 
-          keyvault: "psdekeyvault"
+          keyvault: ${{ env.key_vault }}
           secrets: ${{ env.SECRET_LIST }}
         id: retrieveConnectionSecrets
 

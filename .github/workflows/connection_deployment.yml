@@ -9,11 +9,6 @@ name: DEPLOY_CONNECTION
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-    inputs:
-      connection_name:
-        description: "Connection Name"
-        type: string
-        required: true
 
 env:
   IICS_LOGIN_URL: https://dm-us.informaticacloud.com
@@ -24,8 +19,6 @@ env:
 
   UAT_IICS_USERNAME: ${{ secrets.UAT_IICS_USERNAME }}
   UAT_IICS_PASSWORD: ${{ secrets.UAT_IICS_PASSWORD }}
-
-  CONNECTION_NAME: ${{ github.event.inputs.connection_name }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -38,7 +31,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        connection: ["my_connection", "your_connection"]
+        connection: ["ADLStestditeam3", "missing-connection"]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -48,5 +41,5 @@ jobs:
       - uses: ./.github/actions/connection
         with:
           connection_name: ${{ matrix.connection }}
-          secret_list: "test*"
           az_creds: ${{ secrets.AZURE_CREDENTIALS }}
+          key_vault: "psdekeyvault"
