@@ -28,7 +28,10 @@ runs:
       
       - name: Get secrets
         shell: bash
-        run: echo "$(az keyvault secret list --vault-name psdekeyvault | jq -r '.[] | select( .name | contains("PS")) | .name ' | tr '\n' ,)"
+        run: |
+          echo "$(az keyvault secret list --vault-name psdekeyvault | \
+          jq -r '.[] | select( .name | contains("PS")) | .name ' | \
+          paste -s -d, -)"
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 
