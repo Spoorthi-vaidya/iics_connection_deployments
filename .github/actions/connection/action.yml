@@ -27,8 +27,8 @@ runs:
           creds: ${{ inputs.az_creds }}
       
       - name: Get secrets
-        shell: sh
-        run: echo "SECRET_LIST=$(az keyvault secret list --vault-name psdekeyvault | jq -r '.[] | select( .name | contains("PS"))')" >> $GITHUB_ENV
+        shell: bash
+        run: echo "$(az keyvault secret list --vault-name psdekeyvault | jq -r '.[] | select( .name | contains("PS"))')"
 
       - uses: Azure/get-keyvault-secrets@v1
         with: 
@@ -37,5 +37,5 @@ runs:
         id: retrieveConnectionSecrets
 
       - name: "Get Connection"
-        shell: sh
+        shell: bash
         run: python3 ./scripts/promote_connection.py ${{ inputs.connection_name }} ${{ inputs.secret_list }}
