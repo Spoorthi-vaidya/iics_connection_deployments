@@ -43,7 +43,7 @@ runs:
           paste -s -d, -)" >> $GITHUB_ENV
 
       - uses: Azure/get-keyvault-secrets@v1
-        if: ${{ env.SECRET_LIST }} != ""
+        if: ${{ env.SECRET_LIST }}.trim() != ""
         with: 
           keyvault: ${{ inputs.key_vault }}
           secrets: ${{ env.SECRET_LIST }}
