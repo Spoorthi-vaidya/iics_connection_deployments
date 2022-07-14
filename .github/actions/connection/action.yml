@@ -14,6 +14,7 @@ inputs:
   key_vault:
     description: 'Keyvault to use for target secrets'
     required: true
+
 runs:
   using: "composite"
   steps:
@@ -49,3 +50,5 @@ runs:
       - name: "Get Connection"
         shell: bash
         run: python3 ./scripts/promote_connection.py
+        with:
+          CONNECTION_NAME: ${{ inputs.connection_name }}
