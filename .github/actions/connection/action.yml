@@ -25,6 +25,12 @@ runs:
       - uses: Azure/login@v1
         with:
           creds: ${{ inputs.az_creds }}
+
+      - name: Install python modules
+        shell: bash
+        run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
       
       - name: Get secrets
         shell: bash
