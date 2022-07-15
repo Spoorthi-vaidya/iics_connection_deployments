@@ -26,7 +26,8 @@ check_ws_return(conn)
 conn_json = conn.json()
 
 ### Loop through all secrets for connection and replace params
-for secret in SECRET_LIST.split():
+### TODO: Evaluate what attributes are in connParams vs top level
+for secret in SECRET_LIST.split(","):
     secret_value = os.environ[secret]
     secret_json_key = secret[len(CONNECTION_NAME):]
     conn_json['connParams'][secret_json_key] = secret_value
