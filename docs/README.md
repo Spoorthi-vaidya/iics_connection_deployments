@@ -17,7 +17,7 @@ This project is to demonstrate the capabilities of IICS API's to orchestrate, te
 ## Usage
 1. Set secrets for source and target environment
 2. Update connection deployment matrix for connection names
-<code>      matrix:
+    * <code>matrix:
             connection: ["ADLStestditeam3", "missing-connection"] </code>
 
 ## Future Enhancements
