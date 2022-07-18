@@ -8,3 +8,6 @@ Allowed statuses: Added, Changed, Fixed, Removed
 
 ## [Unreleased]
 
+### [Added]
+Connection deployment
+Key vault integration
